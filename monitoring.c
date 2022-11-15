@@ -6,7 +6,7 @@
 /*   By: bkhatib <bkhatib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:37:41 by bkhatib           #+#    #+#             */
-/*   Updated: 2022/11/09 15:46:44 by bkhatib          ###   ########.fr       */
+/*   Updated: 2022/11/13 14:05:36 by bkhatib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	init_mutex(t_info *info)
 	return (1);
 }
 
-void	death_checker(t_philo *philo, t_info *info)
+void	end_checker(t_philo *philo, t_info *info)
 {
 	int	i;
 
@@ -44,7 +44,7 @@ void	ft_death(t_philo *philo, t_info *info)
 	while (info->dead != true)
 	{
 		if ((int)(real_time() - philo[i].last_meal)
-			> info->time_to_death)
+			> info->time_to_die)
 		{
 			pthread_mutex_lock(&info->printf_mutex);
 			info->dead = true;
@@ -56,7 +56,7 @@ void	ft_death(t_philo *philo, t_info *info)
 		if (i == info->number_of_philo)
 			i = 0;
 		if (info->argc == 6)
-			death_checker(philo, info);
+			end_checker(philo, info);
 	}
 }
 

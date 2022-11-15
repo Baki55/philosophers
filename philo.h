@@ -6,7 +6,7 @@
 /*   By: bkhatib <bkhatib@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:59:28 by bkhatib           #+#    #+#             */
-/*   Updated: 2022/11/09 16:37:22 by bkhatib          ###   ########.fr       */
+/*   Updated: 2022/11/13 14:05:36 by bkhatib          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 typedef struct s_info
 {
 	int				number_of_philo;
-	int				time_to_death;
+	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				argc;
@@ -38,7 +38,7 @@ typedef struct s_info
 	pthread_mutex_t	printf_mutex;
 	int64_t			start_timer;
 	struct s_philo	*philo;
-} t_info;
+}	t_info;
 
 typedef struct s_philo
 {
@@ -48,15 +48,15 @@ typedef struct s_philo
 	atomic_int_fast64_t		counter_meal;
 	atomic_int_fast64_t		last_meal;
 	pthread_t				thread_id;
-	t_info				*info;
-} t_philo;
+	t_info					*info;
+}	t_philo;
 
 /* UTILS FUNCTIONS */
 
 long	real_time(void);
 void	ft_sleep(t_info *info, int time);
-int	msg_exit(char *message);
-int	ft_parse(int argc, char **argv, t_info *info);
+int		msg_exit(char *message);
+int		ft_parse(int argc, char **argv, t_info *info);
 
 /* INIT FUNCTIONS */
 
@@ -70,7 +70,7 @@ void	*routine_thread(t_philo *philo);
 void	ft_fork(t_philo *philo);
 void	routine_printf(t_philo *philo, char *message);
 void	ft_death(t_philo *philo, t_info *info);
-void	death_checker(t_philo *philo, t_info *info);
+void	end_checker(t_philo *philo, t_info *info);
 void	ft_join_destroy(t_philo *philo, t_info *info);
 
 #endif
